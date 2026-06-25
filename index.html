@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise ❤️</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+
+<!-- LOCK SCREEN -->
+<div id="lockScreen" class="screen active">
+  <h1>🔒 Secret Surprise</h1>
+  <input type="password" id="password" placeholder="Enter Password">
+  <button onclick="checkPassword()">Open Gift 🎁</button>
+</div>
+
+<!-- LOADING -->
+<div id="loadingScreen" class="screen">
+  <h1>Loading... ❤️</h1>
+</div>
+
+<!-- WELCOME -->
+<div id="welcomeScreen" class="screen">
+  <h1>Happy Birthday ❤️</h1>
+  <p>Welcome to your special surprise</p>
+  <button onclick="showGallery()">Open Surprise 🎉</button>
+</div>
+
+<!-- GALLERY -->
+<div id="galleryScreen" class="screen">
+  <img id="slideshow" src="photo1.jpg">
+  <h2>Memories ❤️</h2>
+  <button onclick="openLetter()">Read Letter 💌</button>
+</div>
+
+<!-- LETTER -->
+<div id="letterScreen" class="screen">
+  <h1>💌 Letter</h1>
+  <p>
+    You are my special person ❤️<br><br>
+    Forever grateful for you...
+  </p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
