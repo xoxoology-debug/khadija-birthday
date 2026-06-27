@@ -315,11 +315,9 @@
         const CORRECT_PASSKEY = "2026";
         let activeCardIndex = 0;
 
-        // Aap yahan user ki real DATE OF BIRTH setup karein (YYYY, MM-1, DD)
-        // Example: Niche 2007 (Year), 9 (October, kyunki JS me Jan=0 hota h), 15 (Date) dali hai.
-        const BIRTH_DATE = new Date(2007, 7, 05); 
+        // Birthday Date: 2007, July 5 (Month index 6)
+        const BIRTH_DATE = new Date(2007, 6, 5); 
 
-        // Premium Deck Images
         const memoriesData = [
             { image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80", text: "That sweet, beautiful laugh ✨" },
             { image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&q=80", text: "Making every regular day special 🌸" },
@@ -337,17 +335,14 @@
             "May this year wrap you with endless happiness, magic, and pure joy. I am always cheering for you, always!"
         ];
 
-        // DYNAMIC LIVE CALCULATION ENGINE
         function updateLiveAgeDashboard() {
-            const today = new Date(); // Yahan 'today' define karna zaroori tha
+            const today = new Date();
             const diffTime = today - BIRTH_DATE;
 
-            // Total Calculations
             const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
             const totalHours = Math.floor(diffTime / (1000 * 60 * 60));
             const totalSeconds = Math.floor(diffTime / 1000);
 
-            // Correct Breakdown for Years/Months
             let years = today.getFullYear() - BIRTH_DATE.getFullYear();
             let months = today.getMonth() - BIRTH_DATE.getMonth();
             let days = today.getDate() - BIRTH_DATE.getDate();
@@ -361,14 +356,6 @@
                 months += 12;
             }
 
-            // Update DOM Elements
-            document.getElementById("dash-years").innerText = years;
-            document.getElementById("dash-months").innerText = months;
-            document.getElementById("dash-days").innerText = totalDays.toLocaleString();
-            document.getElementById("dash-hours").innerText = totalHours.toLocaleString();
-            document.getElementById("dash-seconds").innerText = (totalSeconds % 60).toString().padStart(2, '0');
-        }
-            // Update DOM Elements
             document.getElementById("dash-years").innerText = years;
             document.getElementById("dash-months").innerText = months;
             document.getElementById("dash-days").innerText = totalDays.toLocaleString();
@@ -376,18 +363,12 @@
             document.getElementById("dash-seconds").innerText = (totalSeconds % 60).toString().padStart(2, '0');
         }
 
-        // Start real-time intervals
         setInterval(updateLiveAgeDashboard, 1000);
 
         function toggleDPModal(show) {
             const modal = document.getElementById("dp-preview-modal");
-            if (show) {
-                modal.classList.remove("hidden-view");
-                modal.classList.add("fade-in-view");
-            } else {
-                modal.classList.add("hidden-view");
-                modal.classList.remove("fade-in-view");
-            }
+            if (show) { modal.classList.remove("hidden-view"); modal.classList.add("fade-in-view"); }
+            else { modal.classList.add("hidden-view"); modal.classList.remove("fade-in-view"); }
         }
 
         function playBellSound() {
@@ -433,10 +414,7 @@
             const loadingView = document.getElementById("view-loading");
             loadingView.classList.remove("hidden-view");
             loadingView.classList.add("fade-in-view");
-            setTimeout(() => { 
-                changeView("view-loading", "view-intro"); 
-                updateLiveAgeDashboard(); // Initial trigger
-            }, 2800);
+            setTimeout(() => { changeView("view-loading", "view-intro"); updateLiveAgeDashboard(); }, 2800);
         }
 
         function changeView(hideId, showId) {
@@ -450,15 +428,10 @@
         function renderStackCards() {
             const container = document.getElementById("cards-deck");
             container.innerHTML = "";
-            memoriesData.forEach((item, index) => {
+            memoriesData.forEach((item) => {
                 const card = document.createElement("div");
                 card.className = "absolute w-56 h-72 rounded-2xl overflow-hidden memory-card bg-zinc-950 p-2 flex flex-col justify-between transition-all duration-300";
-                card.innerHTML = `
-                    <div class="w-full h-[78%] rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800">
-                        <img src="${item.image}" class="w-full h-full object-cover pointer-events-none">
-                    </div>
-                    <p class="text-[11px] serif-font text-zinc-300 italic py-1 tracking-wide text-center">${item.text}</p>
-                `;
+                card.innerHTML = `<div class="w-full h-[78%] rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800"><img src="${item.image}" class="w-full h-full object-cover pointer-events-none"></div><p class="text-[11px] serif-font text-zinc-300 italic py-1 tracking-wide text-center">${item.text}</p>`;
                 card.addEventListener("click", () => rotateDeck());
                 container.appendChild(card);
             });
@@ -470,26 +443,14 @@
             cards.forEach((card, i) => {
                 let offset = i - activeCardIndex;
                 if (offset < 0) offset += memoriesData.length;
-                if (offset === 0) {
-                    card.style.transform = "translateX(0) scale(1) translateZ(0px)";
-                    card.style.zIndex = "30"; card.style.opacity = "1";
-                } else if (offset === 1) {
-                    card.style.transform = "translateX(100px) scale(0.88) rotate(4deg)";
-                    card.style.zIndex = "20"; card.style.opacity = "0.75";
-                } else if (offset === memoriesData.length - 1) {
-                    card.style.transform = "translateX(-100px) scale(0.88) rotate(-4deg)";
-                    card.style.zIndex = "20"; card.style.opacity = "0.75";
-                } else {
-                    card.style.transform = "translateX(0) scale(0.6)";
-                    card.style.zIndex = "0"; card.style.opacity = "0";
-                }
+                if (offset === 0) { card.style.transform = "translateX(0) scale(1) translateZ(0px)"; card.style.zIndex = "30"; card.style.opacity = "1"; }
+                else if (offset === 1) { card.style.transform = "translateX(100px) scale(0.88) rotate(4deg)"; card.style.zIndex = "20"; card.style.opacity = "0.75"; }
+                else if (offset === memoriesData.length - 1) { card.style.transform = "translateX(-100px) scale(0.88) rotate(-4deg)"; card.style.zIndex = "20"; card.style.opacity = "0.75"; }
+                else { card.style.transform = "translateX(0) scale(0.6)"; card.style.zIndex = "0"; card.style.opacity = "0"; }
             });
         }
 
-        function rotateDeck() {
-            activeCardIndex = (activeCardIndex + 1) % memoriesData.length;
-            updateDeckPosition();
-        }
+        function rotateDeck() { activeCardIndex = (activeCardIndex + 1) % memoriesData.length; updateDeckPosition(); }
 
         function startLiveLetterTyping() {
             document.getElementById("envelope-box").classList.add("hidden-view");
@@ -498,18 +459,12 @@
             const wordsArray = fullText.split(" ");
             const destination = document.getElementById("typing-destination");
             let wordIndex = 0;
-
             function typeNextWord() {
                 if (wordIndex < wordsArray.length) {
-                    let wordHTML = wordsArray[wordIndex].replace(/\n/g, "<br>");
-                    destination.innerHTML += wordHTML + " ";
+                    destination.innerHTML += wordsArray[wordIndex].replace(/\n/g, "<br>") + " ";
                     wordIndex++;
                     setTimeout(typeNextWord, 160); 
-                } else {
-                    destination.classList.remove("typing-cursor");
-                    document.getElementById("letter-actions").classList.remove("hidden-view");
-                    triggerGrandCelebration();
-                }
+                } else { destination.classList.remove("typing-cursor"); document.getElementById("letter-actions").classList.remove("hidden-view"); }
             }
             setTimeout(typeNextWord, 400);
         }
@@ -517,22 +472,18 @@
         function triggerGrandCelebration() {
             confetti({ particleCount: 100, spread: 60, origin: { x: 0, y: 0.8 } });
             confetti({ particleCount: 100, spread: 60, origin: { x: 1, y: 0.8 } });
-            confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
-
-            const balloonEmojis = ['🎈', '🎈', '🎉', '✨', '❤️', '🎈'];
+            const balloonEmojis = ['🎈', '🎉', '✨', '❤️'];
             const container = document.getElementById("balloon-container");
-            
-            for(let i = 0; i < 25; i++) {
+            for(let i = 0; i < 20; i++) {
                 setTimeout(() => {
                     const balloon = document.createElement("div");
                     balloon.className = "floating-balloon";
                     balloon.innerText = balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)];
                     balloon.style.left = Math.random() * 100 + "vw";
                     balloon.style.setProperty('--x-drift', (Math.random() * 160 - 80) + "px");
-                    balloon.style.animationDuration = (3.5 + Math.random() * 2) + "s";
                     container.appendChild(balloon);
                     setTimeout(() => balloon.remove(), 6000);
-                }, i * 150);
+                }, i * 200);
             }
         }
     </script>
