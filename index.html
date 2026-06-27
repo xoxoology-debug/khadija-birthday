@@ -339,22 +339,35 @@
 
         // DYNAMIC LIVE CALCULATION ENGINE
         function updateLiveAgeDashboard() {
-            const now = new Date();
-            const diffTime = now - BIRTH_DATE;
+            const today = new Date(); // Yahan 'today' define karna zaroori tha
+            const diffTime = today - BIRTH_DATE;
 
             // Total Calculations
             const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
             const totalHours = Math.floor(diffTime / (1000 * 60 * 60));
             const totalSeconds = Math.floor(diffTime / 1000);
 
-            // Breakdown Years/Months
+            // Correct Breakdown for Years/Months
             let years = today.getFullYear() - BIRTH_DATE.getFullYear();
             let months = today.getMonth() - BIRTH_DATE.getMonth();
-            if (months < 0 || (months === 0 && today.getDate() < BIRTH_DATE.getDate())) {
+            let days = today.getDate() - BIRTH_DATE.getDate();
+
+            if (days < 0) {
+                months--;
+                days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+            }
+            if (months < 0) {
                 years--;
-                months = 12 + months;
+                months += 12;
             }
 
+            // Update DOM Elements
+            document.getElementById("dash-years").innerText = years;
+            document.getElementById("dash-months").innerText = months;
+            document.getElementById("dash-days").innerText = totalDays.toLocaleString();
+            document.getElementById("dash-hours").innerText = totalHours.toLocaleString();
+            document.getElementById("dash-seconds").innerText = (totalSeconds % 60).toString().padStart(2, '0');
+        }
             // Update DOM Elements
             document.getElementById("dash-years").innerText = years;
             document.getElementById("dash-months").innerText = months;
