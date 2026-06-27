@@ -348,8 +348,8 @@
             const totalSeconds = Math.floor(diffTime / 1000);
 
             // Breakdown Years/Months
-            let years = now.getFullYear() - BIRTH_DATE.getFullYear();
-            let months = now.getMonth() - BIRTH_DATE.getMonth();
+            let years = today.getFullYear() - BIRTH_DATE.getFullYear();
+            let months = today.getMonth() - BIRTH_DATE.getMonth();
             if (months < 0 || (months === 0 && today.getDate() < BIRTH_DATE.getDate())) {
                 years--;
                 months = 12 + months;
