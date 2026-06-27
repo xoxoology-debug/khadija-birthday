@@ -335,33 +335,31 @@
             "You are not just my love you are my everything 🤌🏻🤍. You have no idea how much important you are to me nd i have no idea to explain my feeling about you 🤌🏻🌸🩷. میری مسکراہٹ کا راز ہو آپ 🤌🏻🤍🌸. خاص نہیں بہت خاص ہو آپ 🤌🏻🤍🌸. Life is incomplete without you 💫🤍. I can lose everything but not you 🥹🤌🏻. Please stay with me ever forever 🤌🏻💕💫🌸 I love you so much Jannah 🤌🏻💫💕🤍. آپ وہ واحد شخص ہیں جاناں جس کے نام کے بغیر میری ہر دعا نامکمل ہے 💯💫🤌🏻🤍. I love you my jawn 🤌🏻 My everything 💯 Meri Shehzadi meri jawn meri wahid jeeny ki wajah mery dil ki salatanat ki wahid malika 💯🤌🏻🤍🌸💕💫 Meri kul kainaat meri jawn 🌸💕🤍🤌🏻. On my knees holding your hand i just wanna wish this moment never comes to an end nd I’ll always stay here holding your hand just saying 🤌🏻 I love youuuuu meri jawn always be mine never leave me alone i always love you nd I always promise to fulfil all of your dreams and wishes 💯💕🌸🤍💫"
         ];
         function updateLiveAgeDashboard() {
-            const today = new Date();
-            const diffTime = today - BIRTH_DATE;
+    const yearEl = document.getElementById("dash-years");
+    const monthEl = document.getElementById("dash-months");
+    const dayEl = document.getElementById("dash-days");
 
-            const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            const totalHours = Math.floor(diffTime / (1000 * 60 * 60));
-            const totalSeconds = Math.floor(diffTime / 1000);
+    // Sirf tab update karein agar elements screen par hain
+    if (!yearEl || !monthEl || !dayEl) return; 
 
-            let years = today.getFullYear() - BIRTH_DATE.getFullYear();
-            let months = today.getMonth() - BIRTH_DATE.getMonth();
-            let days = today.getDate() - BIRTH_DATE.getDate();
+    const today = new Date();
+    let years = today.getFullYear() - BIRTH_DATE.getFullYear();
+    let months = today.getMonth() - BIRTH_DATE.getMonth();
+    let days = today.getDate() - BIRTH_DATE.getDate();
 
-            if (days < 0) {
-                months--;
-                days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-            }
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
+    if (days < 0) {
+        months--;
+        days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+    }
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
 
-            document.getElementById("dash-years").innerText = years;
-            document.getElementById("dash-months").innerText = months;
-            document.getElementById("dash-days").innerText = totalDays.toLocaleString();
-            document.getElementById("dash-hours").innerText = totalHours.toLocaleString();
-            document.getElementById("dash-seconds").innerText = (totalSeconds % 60).toString().padStart(2, '0');
-        }
-
+    yearEl.innerText = years;
+    monthEl.innerText = months;
+    dayEl.innerText = days;
+}
         setInterval(updateLiveAgeDashboard, 1000);
 
         function toggleDPModal(show) {
