@@ -207,59 +207,47 @@
     <!-- MAIN SYSTEM CONTAINER -->
     <div id="main-app-content" class="w-full max-w-sm hidden-view h-full flex items-center justify-center z-10">
         
-        <!-- 2. LOADING SCREEN -->
         <div id="view-loading" class="w-full flex flex-col items-center justify-center min-h-[75vh] text-center hidden-view">
             <div class="relative mb-4 flex flex-col items-center">
                 <div class="text-5xl animate-bounce duration-1000">🐼</div>
-                <div class="absolute -top-5 -right-6 bg-zinc-900/90 text-[10px] text-white px-2 py-0.5 rounded-md border border-zinc-800 font-medium">Hmm</div>
             </div>
             <p class="text-[17px] tracking-wide text-zinc-200 font-light mt-4 opacity-90" style="font-family: 'Playfair Display', serif;">Loading something special...</p>
             <div class="w-48 h-[3px] bg-zinc-900 rounded-full mt-4 overflow-hidden">
                 <div class="loading-bar-fill"></div>
             </div>
-            <span class="text-[8px] text-zinc-600 tracking-[0.3em] uppercase mt-4 block font-semibold">• JUST FOR YOU •</span>
         </div>
 
-        <!-- 3. INTRO SCREEN + DYNAMIC LIVE AGE DASHBOARD -->
-        <div id="view-intro" class="w-full flex flex-col items-center justify-between min-h-[82vh] text-center hidden-view">
-            <div class="w-full px-4 pt-2">
-                <h1 class="text-[24px] serif-font text-rose-100/95 tracking-wide glow-text-main flex items-center justify-center gap-2 font-medium">
-                    It's Your Special Day <span class="text-rose-500 text-2xl">🍂🌸</span>
+        <div id="view-intro" class="w-full flex flex-col items-center justify-center min-h-[82vh] text-center hidden-view">
+            <div class="w-full px-4">
+                <div class="text-5xl mb-6 animate-bounce">🐼</div>
+                <h1 class="text-3xl serif-font text-rose-100/95 tracking-wide glow-text-main font-medium mb-6">
+                    Happy Birthday My Girl 🎀
                 </h1>
+                <p class="text-sm text-zinc-500 uppercase tracking-[0.2em] mb-8">You have completed</p>
             </div>
 
-            <!-- LIVE DASHBOARD SYSTEM -->
-            <div id="view-intro" class="w-full flex flex-col items-center justify-center min-h-[82vh] text-center hidden-view">
-    <div class="w-full px-4">
-        <div class="text-5xl mb-6 animate-bounce">🐼</div>
-        <h1 class="text-3xl serif-font text-rose-100/95 tracking-wide glow-text-main font-medium mb-6">
-            Happy Birthday My Girl 🎀
-        </h1>
-        <p class="text-sm text-zinc-500 uppercase tracking-[0.2em] mb-8">You have completed</p>
-    </div>
+            <div class="flex justify-center gap-8 w-full mb-10">
+                <div class="flex flex-col items-center">
+                    <span id="dash-years" class="text-4xl font-bold text-rose-200 serif-font">00</span>
+                    <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-500 mt-2">Years</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span id="dash-months" class="text-4xl font-bold text-rose-200 serif-font">00</span>
+                    <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-500 mt-2">Months</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span id="dash-days" class="text-4xl font-bold text-rose-200 serif-font">00</span>
+                    <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-500 mt-2">Days</span>
+                </div>
+            </div>
 
-    <div class="flex justify-center gap-8 w-full mb-10">
-        <div class="flex flex-col items-center">
-            <span id="dash-years" class="text-4xl font-bold text-rose-200 serif-font">00</span>
-            <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-500 mt-2">Years</span>
+            <div class="w-full px-12">
+                <button onclick="changeView('view-intro', 'view-memories')" class="w-full py-3 glow-btn-premium text-zinc-200 rounded-full text-[11px] font-medium tracking-[0.25em] uppercase cursor-pointer">
+                    NEXT ➜
+                </button>
+            </div>
         </div>
-        <div class="flex flex-col items-center">
-            <span id="dash-months" class="text-4xl font-bold text-rose-200 serif-font">00</span>
-            <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-500 mt-2">Months</span>
-        </div>
-        <div class="flex flex-col items-center">
-            <span id="dash-days" class="text-4xl font-bold text-rose-200 serif-font">00</span>
-            <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-500 mt-2">Days</span>
-        </div>
-    </div>
 
-    <div class="w-full px-12">
-        <button onclick="changeView('view-intro', 'view-memories')" class="w-full py-3 glow-btn-premium text-zinc-200 rounded-full text-[11px] font-medium tracking-[0.25em] uppercase cursor-pointer">
-            NEXT ➜
-        </button>
-    </div>
-</div>
-        <!-- 4. MEMORIES SCREEN -->
         <div id="view-memories" class="w-full flex flex-col items-center justify-between min-h-[75vh] text-center hidden-view relative">
             <div class="w-full">
                 <h2 class="text-[26px] serif-font text-rose-100/95 tracking-wide glow-text-main font-medium">Special Memories</h2>
@@ -267,7 +255,6 @@
             </div>
 
             <div class="w-full relative cards-container flex items-center justify-center my-4 overflow-visible" id="cards-deck">
-                <!-- Cards render automatically -->
             </div>
 
             <div class="w-full px-12 pb-4">
@@ -277,37 +264,24 @@
             </div>
         </div>
 
-        <!-- 5. FINAL TEXT LETTER VIEW WITH CELEBRATION EXPLOSION -->
         <div id="view-letter" class="w-full glass-panel rounded-3xl p-6 flex flex-col items-center justify-center min-h-[70vh] text-center hidden-view">
-            
-            <!-- Envelope Heart Layer -->
             <div id="envelope-box" class="flex flex-col items-center justify-center">
                 <h2 class="text-xs tracking-[0.18em] serif-font text-zinc-400 mb-8 uppercase">A Letter, Just For You</h2>
-                
-                <button onclick="startLiveLetterTyping()" class="w-20 h-20 rounded-full bg-gradient-to-b from-rose-950/40 to-black/80 border border-rose-500/30 flex items-center justify-center text-3xl shadow-2xl shadow-rose-900/30 active:scale-90 transition-transform cursor-pointer overflow-visible">
+                <button onclick="startLiveLetterTyping()" class="w-20 h-20 rounded-full bg-gradient-to-b from-rose-950/40 to-black/80 border border-rose-500/30 flex items-center justify-center text-3xl shadow-2xl shadow-rose-900/30 active:scale-90 transition-transform cursor-pointer">
                     <span class="rotating-heart">❤️</span>
                 </button>
-                
-                <p class="text-[9px] text-zinc-500 tracking-widest uppercase mt-5 animate-pulse">Tap the spinning heart to read</p>
+                <p class="text-[9px] text-zinc-500 tracking-widest uppercase mt-5 animate-pulse">Tap the spinning heart</p>
             </div>
-
-            <!-- Letter Box Interface -->
             <div id="letter-content-box" class="w-full text-left hidden-view">
-                <div class="flex justify-between items-center border-b border-zinc-900/80 pb-2 mb-4">
-                    <h3 class="text-xs font-semibold tracking-wider text-rose-400 uppercase">From My Heart ✨</h3>
-                    <span class="text-xs">❤️</span>
-                </div>
-                
-                <!-- Typing Target Element -->
                 <div id="typing-destination" class="typing-cursor text-[12px] text-zinc-300 leading-relaxed min-h-[140px] serif-font"></div>
-                
                 <div id="letter-actions" class="mt-6 pt-2 border-t border-zinc-900 hidden-view">
-                    <button onclick="triggerGrandCelebration()" class="w-full py-2.5 bg-gradient-to-r from-red-900/50 via-rose-800/60 to-red-900/50 border border-rose-500/30 text-rose-200 rounded-xl text-[10px] font-bold tracking-[0.25em] uppercase transition-all shadow-lg shadow-rose-950">
+                    <button onclick="triggerGrandCelebration()" class="w-full py-2.5 bg-gradient-to-r from-red-900/50 via-rose-800/60 to-red-900/50 text-rose-200 rounded-xl text-[10px] font-bold tracking-[0.25em] uppercase">
                         🎉 CELEBRATE NOW 🎉
                     </button>
                 </div>
             </div>
         </div>
+    </div>
 
     </div>
 
